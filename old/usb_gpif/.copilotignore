@@ -1,0 +1,17 @@
+outputs/
+impl/
+
+*.bin
+*.binx
+*.db
+*.fs
+*.log
+*.out
+*.tr
+*.tr.html
+*.vcd
+*.vg
+*.rpt.html
+*.power.html
+*.pin.html
+*.timing_paths

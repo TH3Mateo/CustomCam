@@ -1,0 +1,11 @@
+# Wyniki buildu - odtwarzalne z zrodel
+build/
+
+# Smieci Vivado (mimo -nolog -nojournal potrafia sie pojawic)
+*.jou
+*.log
+*.pb
+.Xil/
+vivado_*.str
+usage_statistics_webtalk.*
+.cache/

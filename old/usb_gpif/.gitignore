@@ -1,0 +1,4 @@
+# Artefakty buildu Gowin - generowane, nie wersjonowane
+impl/
+outputs/
+*.gprj.user

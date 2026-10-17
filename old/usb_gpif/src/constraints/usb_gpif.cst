@@ -1,0 +1,142 @@
+// =============================================================================
+// PINOUT - GW2AR-LV18QN88C8/I7 (QN88)
+//
+// Numery pinow w komentarzach `// pin N, bank B` sa DO UZYCIA PRZY PCB.
+// Pochodza z faktycznego rozmieszczenia przez PnR (impl/pnr/usb_gpif.rpt.txt,
+// sekcja "Pinout by Port Name"), nie z recznego wymyslania.
+//
+// Wykorzystanie: 61 z 62 dostepnych pinow (limit narzedzia: 61 zwyklych I/O
+// + 1 RECONFIG_N). Wymaga MSPI i SSPI oddanych na GPIO -> BRAK FLASH,
+// programowanie wylacznie przez JTAG (piny 5,6,7,8 - zostawione wolne).
+//
+// NIE UZYWAC: 87, 88 (MODE - wybor trybu bootowania, rezystory na PCB).
+//
+// Pary LVDS: podany jest tylko pin dodatni; ujemny wynika z pary i jest
+// wypisany w komentarzu. Nie przypisywac go osobno.
+// =============================================================================
+
+// PINOUT DOCELOWY (proba rozmieszczenia calego systemu w QN88).
+// Sprzet nie istnieje - numery wstepne, ale KOMPLET sygnalow jest realny:
+// GPIF 32+4, 2x LVDS 4-lane (10 par), clk, reset, 2x LED bring-up.
+//
+// UWAGA: zmieszczenie calosci WYMAGA oddania MSPI (59-62) i SSPI (52,54-56).
+// Oznacza to REZYGNACJE Z FLASH - programowanie tylko przez JTAG (5,6,7,8).
+// Patrz .claude/PINOUT.md.
+
+IO_LOC "clk" 4;
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;   // pin 4, bank 7
+IO_LOC "reset" 9;
+IO_PORT "reset" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;   // pin 9, bank 6 - UWAGA: RECONFIG_N
+
+// --- GPIF II: sterowanie ---
+IO_LOC "FLAG_EMPTY" 10;
+IO_PORT "FLAG_EMPTY" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 10, bank 6
+IO_LOC "SLRD_N" 11;
+IO_PORT "SLRD_N" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;   // pin 11, bank 6
+IO_LOC "SLOE_N" 13;
+IO_PORT "SLOE_N" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;   // pin 13, bank 6
+
+// --- GPIF II: magistrala danych DQ[31:0] ---
+IO_LOC "DQ[0]" 86;
+IO_PORT "DQ[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 86, bank 0
+IO_LOC "DQ[1]" 85;
+IO_PORT "DQ[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 85, bank 0
+IO_LOC "DQ[2]" 84;
+IO_PORT "DQ[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 84, bank 0
+IO_LOC "DQ[3]" 83;
+IO_PORT "DQ[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 83, bank 0
+IO_LOC "DQ[4]" 82;
+IO_PORT "DQ[4]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 82, bank 0
+IO_LOC "DQ[5]" 81;
+IO_PORT "DQ[5]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 81, bank 0
+IO_LOC "DQ[6]" 80;
+IO_PORT "DQ[6]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 80, bank 0
+IO_LOC "DQ[7]" 79;
+IO_PORT "DQ[7]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 79, bank 0
+IO_LOC "DQ[8]" 77;
+IO_PORT "DQ[8]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 77, bank 1
+IO_LOC "DQ[9]" 76;
+IO_PORT "DQ[9]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 76, bank 1
+IO_LOC "DQ[10]" 75;
+IO_PORT "DQ[10]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 75, bank 1
+IO_LOC "DQ[11]" 74;
+IO_PORT "DQ[11]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 74, bank 1
+IO_LOC "DQ[12]" 73;
+IO_PORT "DQ[12]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 73, bank 1
+IO_LOC "DQ[13]" 72;
+IO_PORT "DQ[13]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 72, bank 1
+IO_LOC "DQ[14]" 71;
+IO_PORT "DQ[14]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 71, bank 1
+IO_LOC "DQ[15]" 70;
+IO_PORT "DQ[15]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 70, bank 1
+IO_LOC "DQ[16]" 69;
+IO_PORT "DQ[16]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 69, bank 1
+IO_LOC "DQ[17]" 20;
+IO_PORT "DQ[17]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 20, bank 5
+IO_LOC "DQ[18]" 16;
+IO_PORT "DQ[18]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 16, bank 6
+IO_LOC "DQ[19]" 60;
+IO_PORT "DQ[19]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 60, bank 3
+IO_LOC "DQ[20]" 59;
+IO_PORT "DQ[20]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 59, bank 3
+IO_LOC "DQ[21]" 56;
+IO_PORT "DQ[21]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 56, bank 3
+IO_LOC "DQ[22]" 55;
+IO_PORT "DQ[22]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 55, bank 3
+IO_LOC "DQ[23]" 52;
+IO_PORT "DQ[23]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 52, bank 3
+IO_LOC "DQ[24]" 51;
+IO_PORT "DQ[24]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 51, bank 3
+IO_LOC "DQ[25]" 41;
+IO_PORT "DQ[25]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 41, bank 4
+IO_LOC "DQ[26]" 42;
+IO_PORT "DQ[26]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 42, bank 4
+IO_LOC "DQ[27]" 25;
+IO_PORT "DQ[27]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 25, bank 5
+IO_LOC "DQ[28]" 26;
+IO_PORT "DQ[28]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 26, bank 5
+IO_LOC "DQ[29]" 19;
+IO_PORT "DQ[29]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 19, bank 6
+IO_LOC "DQ[30]" 17;
+IO_PORT "DQ[30]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;   // pin 17, bank 6
+IO_PORT "DQ[31]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+// --- LVDS: 2 wyswietlacze x (4 pary danych + 1 para zegara) ---
+// IO_TYPE=LVDS25 = True LVDS (TLVDS). W GW2AR NIE MA wariantu LVDS33 ani 1.8V -
+// datasheet zna tylko LVDS25 / LVDS25E / LVDSE. Sam LVDS25 dopuszcza jednak
+// VCCIO 2.5V LUB 3.3V (DS226 Tab. "Output I/O Standards"), wiec nie wymusza
+// dedykowanego napiecia banku. Do potwierdzenia po wyborze wyswietlacza.
+//
+// Deklarujemy TYLKO pin dodatni pary - ujemny narzedzie przydziela samo,
+// bo pare tworzy prymitywa TLVDS_OBUF (I -> O/OB) w usb_gpif_dev.sv.
+IO_LOC "LVDS0_D_P[0]" 33;
+IO_PORT "LVDS0_D_P[0]" IO_TYPE=LVDS25;   // para: 33(P)/34(N)
+IO_LOC "LVDS0_D_P[1]" 31;
+IO_PORT "LVDS0_D_P[1]" IO_TYPE=LVDS25;   // para: 31(P)/32(N)
+IO_LOC "LVDS0_D_P[2]" 37;
+IO_PORT "LVDS0_D_P[2]" IO_TYPE=LVDS25;   // para: 37(P)/38(N)
+IO_LOC "LVDS0_D_P[3]" 29;
+IO_PORT "LVDS0_D_P[3]" IO_TYPE=LVDS25;   // para: 29(P)/30(N)
+IO_LOC "LVDS1_D_P[0]" 62;
+IO_PORT "LVDS1_D_P[0]" IO_TYPE=LVDS25;   // para: 62(P)/61(N)
+IO_LOC "LVDS1_D_P[1]" 49;
+IO_PORT "LVDS1_D_P[1]" IO_TYPE=LVDS25;   // para: 49(P)/48(N)
+IO_LOC "LVDS1_D_P[2]" 35;
+IO_PORT "LVDS1_D_P[2]" IO_TYPE=LVDS25;   // para: 35(P)/36(N)
+IO_LOC "LVDS1_D_P[3]" 27;
+IO_PORT "LVDS1_D_P[3]" IO_TYPE=LVDS25;   // para: 27(P)/28(N)
+IO_LOC "LVDS0_CLK_P" 54;
+IO_PORT "LVDS0_CLK_P" IO_TYPE=LVDS25;   // para: 54(P)/53(N)
+IO_LOC "LVDS1_CLK_P" 39;
+IO_PORT "LVDS1_CLK_P" IO_TYPE=LVDS25;   // para: 39(P)/40(N)
+
+// --- I2C EDID (na pinach po diodach bring-up) ---
+// Diody sa tylko do bring-upu; w wersji produkcyjnej ich nie ma, wiec te dwa
+// piny przejmuje magistrala I2C do odczytu EDID z wyswietlaczy.
+// OPEN_DRAIN=ON: I2C wymaga otwartego drenu, pull-upy sa na PCB.
+IO_PORT "led_stream_ok" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_PORT "led_error" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "EDID_SCL" 57;
+IO_PORT "EDID_SCL" IO_TYPE=LVCMOS33 PULL_MODE=UP OPEN_DRAIN=ON;   // pin 57, bank 3
+IO_LOC "EDID_SDA" 63;
+IO_PORT "EDID_SDA" IO_TYPE=LVCMOS33 PULL_MODE=UP OPEN_DRAIN=ON;   // pin 63, bank 3
