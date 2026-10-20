@@ -1,0 +1,9 @@
+[submodule "FPGA"]
+	path = FPGA
+	url = https://github.com/TH3Mateo/cam_fpga_module.git
+[submodule "USB"]
+	path = USB
+	url = https://github.com/TH3Mateo/cam_usb_module.git
+[submodule "POWER"]
+	path = POWER
+	url = https://github.com/TH3Mateo/cam_power_module.git
